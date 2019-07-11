@@ -4,12 +4,14 @@
  * @date: 20.7.2018
  * @author:sheenam
  * */
-import {addUser} from '../../controllers/user';
+import {addUser,getUser} from '../../controllers/user';
+
 export const typeDefs = `
                             type User {
                                 _id : String!
                                 email : String!
-                                fullName : String!
+                                firstName : String!
+                                lastName: String!
                             }
                             type Query {
                                 getUser(userId : String!) : User
@@ -21,20 +23,11 @@ export const typeDefs = `
                         `;
 export const resolvers = {
     Query: {
-        getUser(root, payload, context) {   
-            console.log(context, "context?****");
-            return {
-                _id: "abc",
-                email: "sheenam",
-                firstName: "sheenam",
-                lastName: "narula"
-            }
-            //   if (context.auth.isAuthenticated) return context.auth.credentials.user;
-            //   throw new Error(context.auth.message);
-        }
+        getUser 
     },
+
     Mutation: {
-        addUser : addUser 
+        addUser
     }
 
 }

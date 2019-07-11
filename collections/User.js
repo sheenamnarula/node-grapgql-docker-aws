@@ -4,18 +4,24 @@
  * @date: 20.7.2018
  * @author:sheenam
  * */
-import Mongoose from 'mongoose';
+import Mongoose from "mongoose";
 
 const Schema = Mongoose.Schema;
 
 class UserClass {
   static checkEmail(email) {
-    return this.findOne({ email });
+    console.log("inside check mail");
+    try {
+      return this.findOne({ email });
+    } catch (error) {
+      console.log(error);
+    }
   }
   static checkToken(token) {
-    return this.findOne({ 'loginToken.token': token });
+    return this.findOne({ "loginToken.token": token });
   }
   static register(payload) {
+    console.log("inside resgistrartion -==>>");
     return this(payload).save();
   }
   static login(email, password) {
@@ -38,7 +44,7 @@ class UserClass {
   static logout(userId, token) {
     let updateData = {
       $set: {
-        'device.token': '',
+        "device.token": "",
         updatedAt: Date.now()
       },
       $pull: { loginToken: { token } }
@@ -51,14 +57,14 @@ const UserSchema = new Schema({
   fullName: { type: String, required: true },
   email: { type: String, required: true },
   password: { type: String, required: true },
-  role: { type: String, required: true, default: 'user' }, // business, user, admin
+  role: { type: String, required: true, default: "user" }, // business, user, admin
   verified: {
-    token: { type: String, default: '' },
+    token: { type: String, default: "" },
     status: { type: Boolean, default: false }
   },
   loginToken: [
     {
-      token: { type: String, default: '' },
+      token: { type: String, default: "" },
       when: { type: Number, default: Date.now() }
     }
   ],
@@ -70,4 +76,4 @@ const UserSchema = new Schema({
 
 UserSchema.loadClass(UserClass);
 
-export default Mongoose.model('User', UserSchema);
+export default Mongoose.model("User", UserSchema);

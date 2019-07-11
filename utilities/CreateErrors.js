@@ -20,7 +20,7 @@ export const UnknownError = createError('InvalidFields', {
   message: 'UnknownError'
 });
 export const AlreadyRegistered = createError('AlreadyRegistered', {
-  message: 'Already exists'
+  message: 'Already exists',
 });
 
 export const VerificationIssue = createError('VerificationIssue', {

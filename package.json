@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node -- server.js"
+    "start": "nodemon --exec babel-node -- start.js"
   },
   "author": "sheenam",
   "license": "ISC",
@@ -13,6 +13,9 @@
   },
   "dependencies": {
     "apollo-errors": "^1.9.0",
+    "babel-cli": "^6.26.0",
+    "core-js": "^2.6.3",
+    "easygraphql-format-error": "0.0.3",
     "express": "^4.16.3",
     "express-graphql": "^0.6.12",
     "graphql": "^0.13.2",
@@ -20,6 +23,7 @@
     "graphql-schema-modules": "0.0.3",
     "graphql-tools": "^3.0.5",
     "jsonwebtoken": "^8.3.0",
+    "lodash": "^4.17.11",
     "md5": "^2.2.1",
     "mongoose": "^5.2.4",
     "nodemon": "^1.18.3"

@@ -1,4 +1,3 @@
-
 /*
  * @file: user.js
  * @description: Controllers regarding user services.
@@ -6,26 +5,34 @@
  * @author:sheenam
  * */
 
- import {addUserService} from '../services/user';
-import {UnknownError,CustomSuccessResponse,AlreadyRegistered} from '../utilities/CreateErrors' ;
+import { addUserService } from "../services/user";
+import { AlreadyRegistered } from "../utilities/CreateErrors";
+
 export const addUser = async (root, payload, context) => {
-    console.log(context,"contextttt")
-    let result = await addUserService(payload) ;
-    if(result.emailAlreadyexists){
-        throw new AlreadyRegistered({
-            data : {
-                reason : 'email already exists.' 
-            }
-        })
+  try {
+    console.log("inside controller ==>>");
+    let result = await addUserService(payload);
+    if (result.emailAlreadyexists) {
+      throw new AlreadyRegistered({
+        data: {
+          reason: "This email has been already registered.",
+          statusCode: 400,
+          email: payload.email
+        }
+      });
     }
-    if(result){
-        return result
-     //   return CustomSuccessResponse({message : 'User has been registered successfully.'})
-    }else{
-         throw new  UnknownError({
-            data :{
-                reason : 'Error in registration.'
-            }
-        })
-    }
-}
+    return result;
+  } catch (e) {
+    console.log(e);
+    throw e;
+  }
+};
+
+export const getUser = async (root, payload, context) => {
+  return {
+    _id: "abc",
+    email: "sheenam@gmail.com",
+    firstName: "sheenam",
+    lastName: "narula"
+  };
+};
