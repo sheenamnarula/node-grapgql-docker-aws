@@ -10,7 +10,6 @@ import { AlreadyRegistered } from "../utilities/CreateErrors";
 
 export const addUser = async (root, payload, context) => {
   try {
-    console.log("inside controller ==>>");
     let result = await addUserService(payload);
     if (result.emailAlreadyexists) {
       throw new AlreadyRegistered({

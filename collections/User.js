@@ -10,7 +10,6 @@ const Schema = Mongoose.Schema;
 
 class UserClass {
   static checkEmail(email) {
-    console.log("inside check mail");
     try {
       return this.findOne({ email });
     } catch (error) {
@@ -21,7 +20,6 @@ class UserClass {
     return this.findOne({ "loginToken.token": token });
   }
   static register(payload) {
-    console.log("inside resgistrartion -==>>");
     return this(payload).save();
   }
   static login(email, password) {
