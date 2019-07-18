@@ -10,36 +10,17 @@
  * 401 - Authentication Fails
  */
 
-import { createError } from 'apollo-errors';
+import { createError } from "apollo-errors";
 
-export const InvalidFields = createError('InvalidFields', {
-  message: 'Please enter all fields in a valid format'
+export const UnknownError = createError("InvalidFields", {
+  message: "UnknownError"
 });
-
-export const UnknownError = createError('InvalidFields', {
-  message: 'UnknownError'
-});
-export const AlreadyRegistered = createError('AlreadyRegistered', {
-  message: 'Already exists',
+export const AlreadyRegistered = createError("AlreadyRegistered", {
+  message: "Already exists"
 });
 
-export const VerificationIssue = createError('VerificationIssue', {
-  message: 'Not verified'
-});
-
-export const InvalidCredentials = createError('InvalidCredentials', {
-  message: 'Invalid Credentials'
-});
-
-export const validationErrors = createError('ValidationErrors', {
-  message: 'Validation Errors'
-});
-
-export const AuthenticationError = createError('AuthenticationError', {
-  message: 'Authentication Error'
-});
-export const StripeError = createError('StripeError', {
-  message: 'Stripe error has been occured'
+export const NotFoundError = createError("NotFoundError", {
+  message: "NotFound error has been occured"
 });
 
 export const CustomSuccessResponse = function(obj) {
@@ -47,15 +28,6 @@ export const CustomSuccessResponse = function(obj) {
   result.success = true;
   result.message = obj.message;
   result.statusCode = 200;
-
-  return result;
-};
-
-export const ErrorResponse = function(obj) {
-  let result = {};
-  result.success = false;
-  result.message = obj.message;
-  result.statusCode = 400;
 
   return result;
 };

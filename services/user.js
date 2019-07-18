@@ -23,3 +23,7 @@ export const addUserService = async payload => {
     console.log("error ==>", e);
   }
 };
+
+export const getUserService = async userId => {
+  return await User.findOne({ _id: userId });
+};

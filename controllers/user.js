@@ -5,8 +5,8 @@
  * @author:sheenam
  * */
 
-import { addUserService } from "../services/user";
-import { AlreadyRegistered } from "../utilities/CreateErrors";
+import { addUserService, getUserService } from "../services/user";
+import { AlreadyRegistered, NotFoundError } from "../utilities/CreateErrors";
 
 export const addUser = async (root, payload, context) => {
   try {
@@ -28,10 +28,15 @@ export const addUser = async (root, payload, context) => {
 };
 
 export const getUser = async (root, payload, context) => {
-  return {
-    _id: "abc",
-    email: "sheenam@gmail.com",
-    firstName: "sheenam",
-    lastName: "narula"
-  };
+  const user = await getUserService(payload.userId);
+  if (user) {
+    return user;
+  } else {
+    throw new NotFoundError({
+      data: {
+        reason: "User not found.",
+        statusCode: 404
+      }
+    });
+  }
 };

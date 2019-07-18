@@ -4,14 +4,13 @@
  * @date: 20.7.2018
  * @author:sheenam
  * */
-import {addUser,getUser} from '../../controllers/user';
+import { addUser, getUser } from "../../controllers/user";
 
 export const typeDefs = `
                             type User {
                                 _id : String!
                                 email : String!
-                                firstName : String!
-                                lastName: String!
+                                fullName : String!
                             }
                             type Query {
                                 getUser(userId : String!) : User
@@ -22,12 +21,11 @@ export const typeDefs = `
                             }
                         `;
 export const resolvers = {
-    Query: {
-        getUser 
-    },
+  Query: {
+    getUser
+  },
 
-    Mutation: {
-        addUser
-    }
-
-}
+  Mutation: {
+    addUser
+  }
+};

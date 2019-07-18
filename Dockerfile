@@ -12,8 +12,9 @@ RUN npm install babel-cli
 
 RUN npm install babel-preset-env
 
-
-EXPOSE 3007
+ENV DB_URI=mongodb://mongo/express-graphql
+ 
+EXPOSE 3007              
 
 COPY . /app
 
